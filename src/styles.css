@@ -6,7 +6,9 @@ body {
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
+  background-color: hwb(242 68% 9%);
 }
+
 
 h1 {
   margin-top: 0;
@@ -54,6 +56,16 @@ body {
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
+}
+
+.letter-square {
+  background-color: hwb(242 68% 9%);
+  padding: 0;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  font-size: 18px;
+  font-family: Tahoma, sans-serif;
 }
 
 .square {

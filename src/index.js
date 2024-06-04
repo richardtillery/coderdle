@@ -2,11 +2,11 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-import App from "./App";
+import Coderdle from "./Coderdle";
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("coderdle"));
 root.render(
   <StrictMode>
-    <App />
+    <Coderdle />
   </StrictMode>
 );
