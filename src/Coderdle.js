@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { fetchWord } from './WordFetcher.js';
+
+let ANSWER = await fetchWord();
 
 function Square({ index, onFinalLetter }) {
   return (
     <>
-    <input id={"square-"+index} type="text" size="1" minLength="1" maxLength="1" className="letter-square" onChange={ onFinalLetter }/>
+    <input id={"square-"+index} type="text" size="1" minLength="1" maxLength="1" className="sq letter-square" onChange={ onFinalLetter }/>
     </>
   );
 }
@@ -15,13 +18,31 @@ function Row({ squares, onPlay, startIndex, nextRow }) {
     onPlay(squares);
 
     if ((index+1) % 5 == 0) {
-      //any letters solved?
-      //[...squares.slice(index-4, index+1)].forEach()
-      //disable prior row, enable next row
-      console.log("slicing from %d to %d", index-4, index+1);
-      console.log(squares.slice(index-4, index+1));
+      let startIndex = index-4;
+      let correctCount = 0;
+      [...squares.slice(startIndex, index+1)]
+        .forEach((l, i) => {
+          if(l == ANSWER.charAt(i)) {
+            correctCount++;
+            document.getElementById("square-"+(startIndex + i)).classList.replace('letter-square', 'letter-square-located');
+          }
+        });
+      if(correctCount == 5) {
+        //disable all rows
+        [...document.getElementsByClassName("sq")].forEach(sq => sq.disabled = true);
+        //show you won div
+        document.getElementById("winner").setAttribute("style", "display:block");
+      } else {
+        //disable prior row, enable next row
+        console.log("slicing from %d to %d", index-4, index+1);
+        console.log(squares.slice(index-4, index+1));
+      }
     }
     if(index < 24) document.getElementById("square-"+(index+1)).focus();
+    else {
+      [...document.getElementsByClassName("sq")].forEach(sq => sq.disabled = true);
+      document.getElementById("loser").setAttribute("style", "display:block");
+    }
   }
   return (
     <>
@@ -45,6 +66,7 @@ function Board({ squares, onPlay }) {
 }
 
 export default function Coderdle() {
+
   const [squares, setSquares] = useState(Array(25).fill(""));
 
   function handlePlay(updatedSquares) {
