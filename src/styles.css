@@ -70,6 +70,17 @@ body {
   font-family: Tahoma, sans-serif;
 }
 
+.letter-square-close {
+  background-color: hwb(62 6% 3%);
+  padding: 0;
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  font-family: Tahoma, sans-serif;
+}
+
+
 .letter-square {
   background-color: hwb(242 68% 9%);
   padding: 0;
