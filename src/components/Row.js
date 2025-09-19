@@ -28,7 +28,6 @@ export function Row({ squares, onPlay, startIndex, nextRow }) {
           document.getElementById("winner").setAttribute("style", "display:block");
         } else {
           //disable prior row, enable next row
-          console.log("slicing from %d to %d", index-4, index+1);
           console.log(squares.slice(index-4, index+1));
         }
       }

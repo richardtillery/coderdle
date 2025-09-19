@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { fetchWord } from './WordFetcher.js';
 import { Board } from './components/Board.js';
 
 let ANSWER = 'CODER'; //await fetchWord();
